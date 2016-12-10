@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<BarnacleBudget.Models.StockLot>
+
+<table>
+	<tbody>
+		@foreach (var todo in Model)
+		{
+			<tr>
+				<td>@todo.Ticker</td>
+				<td>@todo.FirstDate</td>
+				<td>@todo.LastPrice</td>
+			</tr>
+		}
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td>@Model.Sum(f => f.LastPrice)</td>
+		</tr>
+	</tbody>
+</table>
