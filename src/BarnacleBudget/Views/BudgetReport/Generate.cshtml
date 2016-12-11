@@ -5,14 +5,15 @@
 }
 @model IEnumerable<BarnacleBudget.Models.StockLot>
 
-<table>
+<table class="table table-striped">
 	<tbody>
 		@foreach (var todo in Model)
 		{
 			<tr>
 				<td>@todo.Ticker</td>
-				<td>@todo.FirstDate</td>
+				<td>@todo.FirstDate.ToString("yyyy-MM-dd")</td>
 				<td>@todo.LastPrice</td>
+				<td>@(todo.LastPrice / todo.FirstPrice)</td>
 			</tr>
 		}
 		<tr>

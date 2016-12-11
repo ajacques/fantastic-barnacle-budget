@@ -28,6 +28,7 @@ namespace BarnacleBudget.Models
                            {
                                Ticker = ticker.Key,
                                MinDate = ticker.Min(f => f.Date),
+                               MaxDate = ticker.Max(f => f.Date),
                                Dates = from date in ticker
                                        group date by date.Date into dates
                                        select new
@@ -60,7 +61,10 @@ namespace BarnacleBudget.Models
                         DateTime date = DateTime.ParseExact(parts[0], "yyyy-MM-dd", CultureInfo.CurrentCulture);
                         decimal close = Decimal.Parse(parts[4]);
                         closePrices.Add(date, close);
-                        lastPrice = close;
+                        if (lastPrice == 0)
+                        {
+                            lastPrice = close;
+                        }
                     }
                     foreach (var date in stock.Dates)
                     {
@@ -94,7 +98,7 @@ namespace BarnacleBudget.Models
                 }
                 DateTime date = DateTime.ParseExact(parts[0], "M/dd/yyyy", CultureInfo.CurrentCulture);
                 string name = parts[1];
-                decimal amount = Decimal.Parse(parts[3]);
+                decimal amount = Decimal.Parse(parts[3]) * (parts[4] == "debit" ? 1 : -1);
                 report.transactions.Add(new Transaction(name, date, amount));
             }
             return report;
