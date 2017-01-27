@@ -7,19 +7,30 @@
 
 <table class="table table-striped">
 	<tbody>
+        <tr>
+            <th>Ticker</th>
+            <th>Purchase Date</th>
+            <th>Purchase Price</th>
+            <th>Current Price</th>
+            <th><abbr title="Return on Investment">ROI</abbr></th>
+        </tr>
 		@foreach (var todo in Model)
 		{
 			<tr>
 				<td>@todo.Ticker</td>
 				<td>@todo.FirstDate.ToString("yyyy-MM-dd")</td>
+                <td>@todo.FirstPrice</td>
 				<td>@todo.LastPrice</td>
 				<td>@(todo.LastPrice / todo.FirstPrice)</td>
-			</tr>
+                </tr>
 		}
 		<tr>
-			<td>Total</td>
+			<td><strong>Total</strong></td>
 			<td></td>
-			<td>@Model.Sum(f => f.LastPrice)</td>
+			<td>@Model.Sum(f => f.FirstPrice)</td>
+            <td>@Model.Sum(f => f.LastPrice)</td>
+            <td>@Model.Sum(f => (f.LastPrice * (f.LastPrice / f.FirstPrice)))</td>
+
 		</tr>
 	</tbody>
 </table>
