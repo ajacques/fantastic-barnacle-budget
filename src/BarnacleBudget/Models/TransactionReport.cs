@@ -75,7 +75,7 @@ namespace BarnacleBudget.Models
                             newDate = newDate.AddDays(walk);
                             walk = (walk + Math.Sign(walk)) * -1;
                         }
-                        decimal todayValue = (lastPrice / closePrices[newDate]) * date.TotalDailyValue;
+                        decimal todayValue = Math.Round(((lastPrice / closePrices[newDate]) * date.TotalDailyValue),2);
                         lots.Add(new StockLot(stock.Ticker, date.Date, date.TotalDailyValue, todayValue));
                     }
                 }
