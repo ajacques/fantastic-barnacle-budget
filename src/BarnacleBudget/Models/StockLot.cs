@@ -36,5 +36,17 @@ namespace BarnacleBudget.Models
             get;
             private set;
         }
+
+        public decimal Growth
+        {
+            get
+            {
+                if (FirstPrice == 0)
+                {
+                    return 1;
+                }
+                return (LastPrice - FirstPrice) / FirstPrice;
+            }
+        }
     }
 }

@@ -28,7 +28,6 @@ namespace BarnacleBudget.Models
                            {
                                Ticker = ticker.Key,
                                MinDate = ticker.Min(f => f.Date),
-                               MaxDate = ticker.Max(f => f.Date),
                                Dates = from date in ticker
                                        group date by date.Date into dates
                                        select new
