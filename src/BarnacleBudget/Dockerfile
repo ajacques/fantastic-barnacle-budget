@@ -1,6 +1,5 @@
-﻿FROM microsoft/dotnet
+﻿FROM microsoft/aspnetcore:1.1.0
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5000
 COPY . /app
-RUN dotnet restore
 ENTRYPOINT ["dotnet", "run"]
