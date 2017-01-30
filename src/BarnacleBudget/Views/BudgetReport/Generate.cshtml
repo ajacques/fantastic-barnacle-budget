@@ -1,4 +1,5 @@
-﻿@using BarnacleBudget.Models
+﻿@using System.Globalization
+@using BarnacleBudget.Models
 @model BudgetReport
 
 <table class="table table-striped">
@@ -14,17 +15,17 @@
         {
             <tr>
                 <td>@todo.Ticker</td>
-                <td>@todo.FirstDate.ToString("yyyy-MM-dd")</td>
-                <td>@todo.FirstPrice</td>
-                <td>@todo.LastValue</td>
-                <td>@todo.Growth</td>
+                <td>@todo.FirstDate.ToString("d", CultureInfo.CurrentUICulture)</td>
+                <td>@todo.FirstPrice.ToString("C", CultureInfo.CurrentUICulture)</td>
+                <td>@todo.LastValue.ToString("C", CultureInfo.CurrentUICulture)</td>
+                <td>@todo.Growth.ToString("P", CultureInfo.CurrentUICulture)</td>
             </tr>
         }
         <tr>
             <td><strong>Total</strong></td>
             <td></td>
-            <td>@Model.StockLots.Sum(f => f.FirstPrice)</td>
-            <td>@Model.StockLots.Sum(f => f.LastValue)</td>
+            <td>@Model.StockLots.Sum(f => f.FirstPrice).ToString("C", CultureInfo.CurrentUICulture)</td>
+            <td>@Model.StockLots.Sum(f => f.LastValue).ToString("C", CultureInfo.CurrentUICulture)</td>
         </tr>
     </tbody>
 </table>
