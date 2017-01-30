@@ -15,9 +15,8 @@ namespace BarnacleBudget.Controllers
         [HttpPost]
         public IActionResult Generate(IFormFile transactions)
         {
-            TransactionReport report = TransactionReport.FromCsvStream(transactions.OpenReadStream());
-            IEnumerable<StockLot> lots = report.ComputePortfolio();
-            return View(lots);
+            TransactionReport report = TransactionReport.FromCsvStream(transactions.OpenReadStream());;
+            return View(new BudgetReport(report.ComputePortfolio()));
         }
     }
 }

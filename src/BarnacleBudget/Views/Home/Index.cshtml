@@ -1,7 +1,11 @@
 ﻿@{
-	ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
-<form asp-action="Generate" asp-controller="BudgetReport" enctype="multipart/form-data">
-	<input type="file" name="transactions" />
-	<input type="submit" />
-</form>
+<div class="container">
+    <div class="col-md-3 center-block well">
+        <form asp-action="Generate" asp-controller="BudgetReport" enctype="multipart/form-data">
+            <input type="file" name="transactions" />
+            <input type="submit" />
+        </form>
+    </div>
+</div>

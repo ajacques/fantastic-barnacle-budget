@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace BarnacleBudget.Models
 {
+    /// <summary>
+    /// Represents a single transaction that the user has made. (Un-aggregated)
+    /// </summary>
     public class Transaction
     {
         private static IDictionary<string, string> tickerLookup;
@@ -60,12 +63,10 @@ namespace BarnacleBudget.Models
 
         public string ProbableStockTicket()
         {
-            if (!tickerLookup.ContainsKey(Name))
-            {
-                return null;
-            }
+            string ticker = null;
+            tickerLookup.TryGetValue(Name, out ticker);
 
-            return tickerLookup[Name];
+            return ticker;
         }
     }
 }
