@@ -56,6 +56,10 @@ namespace BarnacleBudget
                     template: "budget_report",
                     defaults: new { controller = "BudgetReport", action = "Generate" });
                 routes.MapRoute(
+                    name: "health_check",
+                    template: "ping",
+                    defaults: new { controller = "HealthCheck", action = "Ping" });
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
