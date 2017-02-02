@@ -1,11 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 <div class="container">
     <div class="col-md-3 center-block well">
         <form asp-action="Generate" asp-controller="BudgetReport" enctype="multipart/form-data">
             <input type="file" name="transactions" />
-            <input type="submit" />
+            <input type="submit" value="@Localizer["Submit"]" />
         </form>
     </div>
 </div>
