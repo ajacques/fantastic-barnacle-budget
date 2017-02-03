@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using BarnacleBudget.Models;
 
@@ -15,6 +11,11 @@ namespace BarnacleBudget.Controllers
         [HttpPost]
         public IActionResult Generate(IFormFile transactions)
         {
+            if (transactions == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             TransactionReport report = TransactionReport.FromCsvStream(transactions.OpenReadStream());;
             return View(new BudgetReport(report.ComputePortfolio()));
         }
